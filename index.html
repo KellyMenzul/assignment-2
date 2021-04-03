@@ -6,6 +6,7 @@
     <script>
         moveTimer = null
         stepNumber = 0
+        BoxImage = document.getElementById("box")
        
 
         // ================MOVE LEFT & RIGHT=======================
@@ -20,6 +21,7 @@
 
                 alien.src = "/alien/alienlwalk" + stepNumber + ".gif"
             }
+        
 
         function stepRight()
             {
@@ -38,13 +40,44 @@
                 alien.style.left = parseInt(alien.style.left) - 1 + "px"
                 stepLeft()
 
-            }
+                // stops and turns right at left edge of screen
+                if(alien.style.left == -20 + "px")
+                {
+                    moveRight()
+                    
+                    clearInterval(moveTimer)
+                    moveTimer = null
+
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(moveRight, 20)
+                    }   
+                }
+                }
+
 
             function moveRight()
             {
                 alien.style.left = parseInt(alien.style.left) + 1 + "px"
                 stepRight()
+                
+                // stops and turns left at right edge of screen
+                if(alien.style.left == 1716 + "px" )
+                {
+                    moveLeft()
+
+                    clearInterval(moveTimer)
+                    moveTimer = null
+
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(moveLeft, 20)
+                    }   
+                    
+                }
             }
+
+
 
        
 
@@ -59,6 +92,7 @@
             alien.style.top = parseInt(alien.style.top) + 5 + "px"
         }
        
+// ===================LITTLE BOX===========================
 
 // ================MAIN FUNCTION=======================
         function keyMoving(e)
@@ -72,23 +106,19 @@
                     }
                     
                 }
+
                 else if(e.which == 37) //LEFT
                 {
                     if(moveTimer == null)
                     {
                         moveTimer = setInterval(moveLeft, 20)
                     }
-                    
-            
                 }
 
                 else if(e.which == 40) // DOWN
                 {
-                    
                         clearInterval(moveTimer)
                         moveTimer = null
-                   
-                    
                 }
 
 
@@ -106,24 +136,21 @@
                  
                 }
                 
-                
-                
             }
-
-            
-            
-
         }
+
     
 
         window.onload=function()
         {
             let alien = document.getElementById('alien')
+            let BoxImage = document.getElementById('box')
             window.onkeydown=keyMoving
+            // console.log(document.getElementById("box").src)
         }
     </script>
 </head>
 <body>
-    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:300px; left:200px;">
+    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:20px; left:200px;">
 </body>
 </html>
