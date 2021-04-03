@@ -6,7 +6,6 @@
     <script>
         moveTimer = null
         stepNumber = 0
-        BoxImage = document.getElementById("box")
        
 
         // ================MOVE LEFT & RIGHT=======================
@@ -37,6 +36,7 @@
 
             function moveLeft()
             {
+
                 alien.style.left = parseInt(alien.style.left) - 1 + "px"
                 stepLeft()
 
@@ -58,6 +58,7 @@
 
             function moveRight()
             {
+                willCrashIntoBox()
                 alien.style.left = parseInt(alien.style.left) + 1 + "px"
                 stepRight()
                 
@@ -65,15 +66,14 @@
                 if(alien.style.left == 1716 + "px" )
                 {
                     moveLeft()
-
+                    
                     clearInterval(moveTimer)
                     moveTimer = null
-
+                    
                     if(moveTimer == null)
                     {
                         moveTimer = setInterval(moveLeft, 20)
                     }   
-                    
                 }
             }
 
@@ -91,7 +91,6 @@
         function goJump()
         {
             alien.style.top = parseInt(alien.style.top) - 5 + "px"
-            // setTimeout(stopJump, 500)
         }
 
         function alienJump()
@@ -101,12 +100,44 @@
                 clearInterval(moveTimer)
                 moveTimer = null
                 stopJump()
-
             },500)
+
         }
 
        
 // ===================LITTLE BOX===========================
+        function moveLittleBox()
+        {
+            document.getElementById("box").style.left = parseInt(document.getElementById("box").style.left) + 5 + "px"
+        }
+
+        function willCrashIntoBox()
+        {
+            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/big_box.gif")
+            {
+                moveLeft()
+                    
+                    clearInterval(moveTimer)
+                    moveTimer = null
+                    
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(moveLeft, 20)
+                    }   
+            }
+
+            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/little_box.gif")
+            {
+                moveLittleBox()
+                clearInterval(moveTimer)
+
+
+                
+            }
+        }
+
+
+
 
 // ================MAIN FUNCTION=======================
         function keyMoving(e)
@@ -121,6 +152,7 @@
                     {
                         moveTimer = setInterval(moveRight, 20)
                     }
+                    
                     
                 }
 
@@ -152,10 +184,6 @@
                 {
                     moveTimer = setInterval(alienJump,20)
                 }
-                else
-                {
-                 
-                }
                 
             }
         }
@@ -164,14 +192,16 @@
 
         window.onload=function()
         {
+            willCrashIntoBox()
             let alien = document.getElementById('alien')
             let BoxImage = document.getElementById('box')
             window.onkeydown=keyMoving
-            // console.log(document.getElementById("box").src)
+            console.log(document.getElementById("box").src)
         }
     </script>
 </head>
 <body>
-    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:200px; left:200px;">
+    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:20px; left:200px;">
+    <img src="little_box.gif" id="box" style="position: absolute; left: 320px; top:20px; width:50px;">
 </body>
 </html>
