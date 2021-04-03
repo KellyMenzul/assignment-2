@@ -82,15 +82,29 @@
        
 
 // ================JUMP=======================
-        function alienJump()
-        {
-            alien.style.top = parseInt(alien.style.top) - 5 + "px"
-        }
-
         function stopJump()
         {
             alien.style.top = parseInt(alien.style.top) + 5 + "px"
         }
+
+
+        function goJump()
+        {
+            alien.style.top = parseInt(alien.style.top) - 5 + "px"
+            // setTimeout(stopJump, 500)
+        }
+
+        function alienJump()
+        {
+            goJump()
+            setTimeout(function(){
+                clearInterval(moveTimer)
+                moveTimer = null
+                stopJump()
+
+            },500)
+        }
+
        
 // ===================LITTLE BOX===========================
 
@@ -100,6 +114,9 @@
             //===========MOVE LEFT RIGHT================
             if(e.which == 39) //RIGHT
                 {
+                    clearInterval(moveTimer)
+                    moveTimer = null
+
                     if(moveTimer == null)
                     {
                         moveTimer = setInterval(moveRight, 20)
@@ -109,6 +126,9 @@
 
                 else if(e.which == 37) //LEFT
                 {
+                    clearInterval(moveTimer)
+                    moveTimer = null
+
                     if(moveTimer == null)
                     {
                         moveTimer = setInterval(moveLeft, 20)
@@ -125,11 +145,12 @@
             //==========JUMP===============
             if(e.which == 38) // UP 
             {
+                clearInterval(moveTimer)
+                moveTimer = null
+
                 if(moveTimer == null)
                 {
                     moveTimer = setInterval(alienJump,20)
-                    
-                    
                 }
                 else
                 {
@@ -151,6 +172,6 @@
     </script>
 </head>
 <body>
-    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:20px; left:200px;">
+    <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:200px; left:200px;">
 </body>
 </html>
