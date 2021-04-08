@@ -106,7 +106,7 @@
                 stopJump()
             },500)
             
-            let littleBox = document.getElementById('box')
+            let littleBox = document.getElementById('littlebox')
 
              if(alien.offsetLeft >= littleBox.offsetLeft - 90 && littleBox.offsetLeft + 20 > alien.offsetLeft)
                 {
@@ -120,12 +120,13 @@
 // ===================LITTLE BOX===========================
         function moveLittleBox()
         {
-            document.getElementById("box").style.left = parseInt(document.getElementById("box").style.left) + 5 + "px"
+            document.getElementById("littlebox").style.left = parseInt(document.getElementById("littlebox").style.left) + 5 + "px"
         }
+
 
         function explosion()
         {
-            let littleBox = document.getElementById('box')
+            let littleBox = document.getElementById('littlebox')
             littleBox.src = "explosion/explosion.gif"
             
             littleBox.style.top ="130px"
@@ -138,9 +139,8 @@
 // ========================BOXES========================================
         function willCrashIntoBox()
         {
-            if(alien.style.left == 264 + "px")
+            if(alien.style.left == 350 + "px")
             {
-                this.src="/boxes/big_box.gif"
                 moveLeft()
                     
                     clearInterval(moveTimer)
@@ -156,11 +156,10 @@
             
             if(alien.style.left == 264 + "px")
             {
-                this.src = "/boxes/little_box"
-                moveLittleBox()
-
+                
                 clearInterval(moveTimer)
-                    moveTimer = null
+                moveTimer = null
+                moveLittleBox()
                     
                     if(moveTimer == null)
                     {
@@ -236,10 +235,8 @@
         {
             willCrashIntoBox()
             let alien = document.getElementById('alien')
-            let BoxImage = document.getElementById('box')
             let explosion = document.getElementById('explosion')
             window.onkeydown=keyMoving
-            console.log(document.getElementById("box").src)
             console.log(document.getElementById("alien").src)
         }
     </script>
@@ -247,6 +244,7 @@
 <body style="overflow-x:none;">
     <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:100px; left:200px;">
    
-      <img src="/boxes/big_box.gif" id="box" style="position: absolute; left: 320px; top:130px; width:50px;">
+      <img src="/boxes/big_box.gif" id="bigbox" style="position: absolute; left: 400px; top:130px; width:50px;">
+      <img src="/boxes/little_box.gif" id="littlebox" style="position: absolute; left: 320px; top:130px; width:50px;">
 </body>
 </html>
