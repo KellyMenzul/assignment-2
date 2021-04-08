@@ -118,6 +118,8 @@
                 stopJump()
             },500)
 
+            explosion()
+
         }
 
        
@@ -128,6 +130,16 @@
         }
 
 
+        function explosion()
+        {
+            let littleBox = document.getElementById('box')
+            littleBox.src = "explosion/explosion.gif"
+            littleBox.style.top ="130px"
+            littleBox.style.left = parseInt(littleBox.style.left)
+            setTimeout(function(){
+                littleBox.style.display = "none"
+            },3000)
+        }
 // ========================BOXES========================================
         function willCrashIntoBox()
         {
@@ -160,7 +172,13 @@
                     if(moveTimer == null)
                     {
                         moveTimer = setInterval(moveLittleBox, 20)
+                        setTimeout(function(){
+                            clearInterval(moveTimer)
+                            moveTimer = null
+                        }, 700)
                     }   
+
+                
 
             }
         }
