@@ -76,19 +76,7 @@
                     }   
                 }
 
-                 // runs into big box
-                //  else if(alien.style.left == 740 + "px")
-                // {
-                //     moveLeft()
-                    
-                //     clearInterval(moveTimer)
-                //     moveTimer = null
-                    
-                //     if(moveTimer == null)
-                //     {
-                //         moveTimer = setInterval(moveLeft, 20)
-                //     }   
-                // }
+            
             }
 
 
@@ -117,9 +105,15 @@
                 moveTimer = null
                 stopJump()
             },500)
+            
+            let littleBox = document.getElementById('box')
 
-            explosion()
-
+             if(alien.offsetLeft >= littleBox.offsetLeft - 90 && littleBox.offsetLeft + 20 > alien.offsetLeft)
+                {
+                    explosion()
+                }
+           
+            
         }
 
        
@@ -129,22 +123,24 @@
             document.getElementById("box").style.left = parseInt(document.getElementById("box").style.left) + 5 + "px"
         }
 
-
         function explosion()
         {
             let littleBox = document.getElementById('box')
             littleBox.src = "explosion/explosion.gif"
+            
             littleBox.style.top ="130px"
-            littleBox.style.left = parseInt(littleBox.style.left)
             setTimeout(function(){
                 littleBox.style.display = "none"
             },3000)
         }
+
+
 // ========================BOXES========================================
         function willCrashIntoBox()
         {
-            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/boxes/big_box.gif")
+            if(alien.style.left == 264 + "px")
             {
+                this.src="/boxes/big_box.gif"
                 moveLeft()
                     
                     clearInterval(moveTimer)
@@ -156,14 +152,11 @@
                     }   
             }
 
-            // if (alien.style.left == 260 + "px"  && document.getElementById("box").src == "http://127.0.0.1:5500/little_box.gif")
-            // {
-            //     document.getElementById("box").src = "http://127.0.0.1:5500/explosion/explosion.gif"
 
-            // }
-
-            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/boxes/little_box.gif")
+            
+            if(alien.style.left == 264 + "px")
             {
+                this.src = "/boxes/little_box"
                 moveLittleBox()
 
                 clearInterval(moveTimer)
@@ -178,8 +171,7 @@
                         }, 700)
                     }   
 
-                
-
+                    
             }
         }
 
@@ -232,6 +224,8 @@
                     moveTimer = setInterval(alienJump,20)
                 }
                 
+                
+                
                
             }
         }
@@ -252,6 +246,7 @@
 </head>
 <body style="overflow-x:none;">
     <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:100px; left:200px;">
-    <img src="/boxes/little_box.gif" id="box" style="position: absolute; left: 320px; top:130px; width:50px;">
+   
+      <img src="/boxes/big_box.gif" id="box" style="position: absolute; left: 320px; top:130px; width:50px;">
 </body>
 </html>
