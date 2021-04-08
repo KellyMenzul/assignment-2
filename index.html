@@ -99,13 +99,14 @@
         function stopJump()
         {
             alien.style.top = parseInt(alien.style.top) + 5 + "px"
+        
         }
 
 
         function goJump()
         {
             alien.style.top = parseInt(alien.style.top) - 5 + "px"
-            alien.style.left = parseInt(alien.style.left) + 5 + "px"
+            
         }
 
         function alienJump()
@@ -126,9 +127,11 @@
             document.getElementById("box").style.left = parseInt(document.getElementById("box").style.left) + 5 + "px"
         }
 
+
+// ========================BOXES========================================
         function willCrashIntoBox()
         {
-            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/big_box.gif")
+            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/boxes/big_box.gif")
             {
                 moveLeft()
                     
@@ -147,7 +150,7 @@
 
             // }
 
-            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/little_box.gif")
+            if(alien.style.left == 264 + "px" && document.getElementById("box").src == "http://127.0.0.1:5500/boxes/little_box.gif")
             {
                 moveLittleBox()
 
@@ -225,11 +228,12 @@
             let explosion = document.getElementById('explosion')
             window.onkeydown=keyMoving
             console.log(document.getElementById("box").src)
+            console.log(document.getElementById("alien").src)
         }
     </script>
 </head>
 <body style="overflow-x:none;">
     <img src="/alien/alienlwalk0.gif" id="alien" style="position:absolute;top:100px; left:200px;">
-    <img src="little_box.gif" id="box" style="position: absolute; left: 320px; top:130px; width:50px;">
+    <img src="/boxes/little_box.gif" id="box" style="position: absolute; left: 320px; top:130px; width:50px;">
 </body>
 </html>
